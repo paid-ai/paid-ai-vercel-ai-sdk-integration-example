@@ -2,8 +2,36 @@
 
 import { useChat } from '@ai-sdk/react';
 
+async function recordUsageUsingEndpoint(usageData: any) {
+  try {
+    const response = await fetch('/api/track-usage', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(usageData),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to record usage');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error recording usage:', error);
+  }
+}
+
 export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    onFinish: async (message) => {
+      await recordUsageUsingEndpoint({
+        event_name: "yes_or_no_on_article",
+        agent_id: "external-id",
+        customer_id: "customer-with-external-id",
+      })
+    }
+  });
   return (
     <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
       {messages.map(message => (
