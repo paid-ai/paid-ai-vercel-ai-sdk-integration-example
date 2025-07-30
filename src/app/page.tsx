@@ -1,10 +1,11 @@
 'use client';
 
 import { useChat } from '@ai-sdk/react';
+import { SignalData } from './api/utils/client';
 
-async function recordUsageUsingEndpoint(usageData: any) {
+async function recordUsageUsingEndpoint(usageData: SignalData) {
   try {
-    const response = await fetch('/api/track-usage', {
+    const response = await fetch('/api/track-agent-usage', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,9 +27,9 @@ export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     onFinish: async (message) => {
       await recordUsageUsingEndpoint({
-        event_name: "yes_or_no_on_article",
-        agent_id: "external-id",
-        customer_id: "customer-with-external-id",
+        event_name: "using_chat_prompt",
+        external_agent_id: "ai-sdk-chatbot-id",
+        external_customer_id: "customer-with-external-id",
       })
     }
   });
