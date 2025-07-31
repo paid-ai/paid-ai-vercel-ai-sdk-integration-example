@@ -7,6 +7,13 @@ async function signalWithRecordBulk(usageData: SignalData) {
     event_name: usageData.event_name,
     agent_id: usageData.external_agent_id,
     customer_id: usageData.external_customer_id,
+    data: {
+      costData: {
+        vendor: "OpenAI",
+        amount: 0.0001,
+        currency: "USD",
+      }
+    }
   }
 
   const client = await getClient();
@@ -29,7 +36,7 @@ export async function POST(request: NextRequest) {
   try {
     const usageData = await request.json();
     debugger;
-    await signalWithTrace(usageData)
+    await signalWithRecordBulk(usageData)
 
     return NextResponse.json({ success: true });
   } catch (error) {
