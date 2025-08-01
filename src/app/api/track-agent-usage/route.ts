@@ -35,8 +35,7 @@ async function signalWithTrace(usageData: SignalData) {
 export async function POST(request: NextRequest) {
   try {
     const usageData = await request.json();
-    debugger;
-    await signalWithRecordBulk(usageData)
+    await signalWithTrace(usageData)
 
     return NextResponse.json({ success: true });
   } catch (error) {
