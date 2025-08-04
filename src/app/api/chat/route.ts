@@ -1,4 +1,4 @@
-import { paidStreamText } from '@paid-ai/paid-node';
+import { paidStreamText } from '@paid-ai/paid-node/vercel';
 import { getClient } from '../utils/client';
 import { getModel, type ModelProvider } from '../utils/models';
 
