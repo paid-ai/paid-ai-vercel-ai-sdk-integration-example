@@ -1,3 +1,4 @@
+import { google } from '@ai-sdk/google';
 import { openai } from '@ai-sdk/openai';
 import { paidGenerateText } from '@paid-ai/paid-node';
 import { getClient } from '../utils/client';
@@ -13,7 +14,8 @@ export async function POST(req: Request) {
   return await client.trace(
     "customer-with-external-id", async () => {
       const result = await paidGenerateText({
-        model: openai('gpt-4o'),
+        // model: openai('gpt-4o'),
+        model: google('gemini-2.5-flash'),
         prompt,
         system,
       });
