@@ -1,19 +1,18 @@
-import { openai } from '@ai-sdk/openai';
 import { paidStreamObject } from '@paid-ai/paid-node';
 import { getClient } from '../utils/client';
+import { getModel, type ModelProvider } from '../utils/models';
 import { z } from 'zod';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const { prompt } = await req.json();
+  const { prompt, provider, modelName } = await req.json();
 
   const client = await getClient();
 
   return await client.trace(
     "customer-with-external-id", async () => {
-      // Example schema for streaming object generation
       const schema = z.object({
         story: z.string().describe('A creative story'),
         characters: z.array(z.object({
@@ -24,7 +23,7 @@ export async function POST(req: Request) {
       });
 
       const result = await paidStreamObject({
-        model: openai('gpt-4o'),
+        model: getModel(provider as ModelProvider, modelName),
         prompt,
         schema,
         onFinish: (result) => {

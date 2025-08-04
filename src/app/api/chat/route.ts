@@ -1,19 +1,19 @@
-import { openai } from '@ai-sdk/openai';
 import { paidStreamText } from '@paid-ai/paid-node';
 import { getClient } from '../utils/client';
+import { getModel, type ModelProvider } from '../utils/models';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+  const { messages, provider, modelName } = await req.json();
 
   const client = await getClient();
 
   return await client.trace(
     "customer-with-external-id", async () => {
       const result = await paidStreamText({
-        model: openai('gpt-4o'),
+        model: getModel(provider as ModelProvider, modelName),
         messages,
       });
 

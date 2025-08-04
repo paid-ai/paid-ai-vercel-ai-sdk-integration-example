@@ -1,21 +1,19 @@
-import { google } from '@ai-sdk/google';
-import { openai } from '@ai-sdk/openai';
 import { paidGenerateText } from '@paid-ai/paid-node';
 import { getClient } from '../utils/client';
+import { getModel, type ModelProvider } from '../utils/models';
 
 // Allow requests up to 30 seconds
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const { prompt, system } = await req.json();
+  const { prompt, system, provider, modelName } = await req.json();
 
   const client = await getClient();
 
   return await client.trace(
     "customer-with-external-id", async () => {
       const result = await paidGenerateText({
-        // model: openai('gpt-4o'),
-        model: google('gemini-2.5-flash'),
+        model: getModel(provider as ModelProvider, modelName),
         prompt,
         system,
       });
