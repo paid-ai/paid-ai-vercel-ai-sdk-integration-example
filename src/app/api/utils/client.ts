@@ -6,7 +6,6 @@ let isInitialized: boolean = false;
 export async function getClient(): Promise<PaidClient> {
   if (!client) {
     try {
-      // Use dynamic import to avoid bundling issues
       client = new PaidClient({ token: "050d3549-54c6-4e7e-9ddc-ea87007dc915" });
     } catch (error) {
       console.error('Failed to initialize PaidClient:', error);
