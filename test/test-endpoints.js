@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const API_BASE = 'http://localhost:3000/api';
+const API_BASE = `http://localhost:${process.env.PORT ? process.env.PORT : 3000}/api`;
 
 async function testEndpoint(endpoint, data, resultPrint) {
   console.log(`\n🧪 Testing ${endpoint}...`);
@@ -87,7 +87,7 @@ const testConfigs = {
   },
   streamText: {
     messages: [
-      { role: 'user', content: 'Tell me a short story about a robot learning to paint. 100 words max.' }
+      { role: 'user', parts: [{ type: 'text', text: 'Tell me a short story about a robot learning to paint. 100 words max.' }] }
     ]
   },
   streamObject: {
