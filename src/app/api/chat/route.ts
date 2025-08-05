@@ -1,15 +1,23 @@
-import { convertToModelMessages, streamText, UIMessage } from 'ai';
+import { convertToModelMessages, UIMessage } from 'ai';
+import { getClient } from '../utils/client';
 import { openai } from '@ai-sdk/openai';
+import { paidStreamText } from '@paid-ai/paid-node/vercel';
 
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
-  const result = streamText({
-    model: openai("gpt-4o"),
-    messages: convertToModelMessages(messages),
-  });
+  const client = await getClient();
 
-  return result.toUIMessageStreamResponse();
+  return await client.trace(
+    "customer-with-external-id", async () => {
+      const result = await paidStreamText({
+        model: openai("gpt-4o"),
+        messages: convertToModelMessages(messages),
+      });
+
+      return result.toUIMessageStreamResponse();
+    }
+  );
 }

@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getClient } from "../utils/client";
 import { SignalData } from "@/app/types";
-import { PaidClient } from "@paid-ai/paid-node";
 
 async function signalWithTrace(usageData: SignalData) {
-  const apiToken = process.env.PAID_API_TOKEN ?? "";
-  const client = new PaidClient({ token: apiToken });
+  const client = await getClient();
 
   async function sendSignal() {
     client.signal(usageData.event_name)
