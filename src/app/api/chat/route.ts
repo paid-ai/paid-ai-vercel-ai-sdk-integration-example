@@ -3,7 +3,6 @@ import { getClient } from '../utils/client';
 import { openai } from '@ai-sdk/openai';
 import { paidStreamText } from '@paid-ai/paid-node/vercel';
 
-// Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
 export async function POST(req: Request) {

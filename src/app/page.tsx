@@ -1,9 +1,9 @@
 'use client';
 
-import { useChat } from '@ai-sdk/react';
-import { SignalData } from "@/app/types";
 import { useState } from 'react';
+import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
+import { SignalData } from "@/app/types";
 
 async function recordUsageUsingEndpoint(usageData: SignalData) {
   try {

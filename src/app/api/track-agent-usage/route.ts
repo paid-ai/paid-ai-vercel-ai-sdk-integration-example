@@ -1,24 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Paid } from "@paid-ai/paid-node";
-import { getClient, SignalData } from "../utils/client";
 
-async function signalWithRecordBulk(usageData: SignalData) {
-  const signal: Paid.Signal = {
-    event_name: usageData.event_name,
-    agent_id: usageData.external_agent_id,
-    customer_id: usageData.external_customer_id,
-    data: {
-      costData: {
-        vendor: "OpenAI",
-        amount: 0.0001,
-        currency: "USD",
-      }
-    }
-  }
-
-  const client = await getClient();
-  await client.usage.recordBulk({ signals: [signal] });
-}
+import { getClient } from "../utils/client";
+import { SignalData } from "@/app/types";
 
 async function signalWithTrace(usageData: SignalData) {
   const client = await getClient();
@@ -36,6 +19,8 @@ export async function POST(request: NextRequest) {
   try {
     const usageData = await request.json();
     await signalWithTrace(usageData)
+
+    console.log(usageData);
 
     return NextResponse.json({ success: true });
   } catch (error) {
