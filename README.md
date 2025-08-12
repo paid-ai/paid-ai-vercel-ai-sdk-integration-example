@@ -1,4 +1,4 @@
-# Paid.ai Simple Vercel AI SDK Integration Example
+# Paid.ai Vercel AI SDK Integration Example
 
 A Next.js chat application demonstrating how to instrument AI SDK applications with [paid.ai](https://paid.ai) for cost tracking and usage monitoring.
 
@@ -6,21 +6,13 @@ Get started at [app.paid.ai](https://app.paid.ai/) for free.
 
 ## What's Included
 
-This demo shows how to integrate Paid.ai's cost tracking and signal instrumentation into a Vercel AI SDK chat application:
+This example shows how to integrate Paid.ai's cost tracking and signal instrumentation into a Vercel AI SDK chat application:
 
 - **Cost Tracking**: Automatic LLM token cost calculation and tracking
 - **Usage Signals**: Custom event tracking for user interactions
 - **Multiple Providers**: Support for OpenAI and Google AI models
 
-## Key Implementation
-
-The demo implements two main Paid.ai features:
-
-1. **Automatic Cost Tracking** via `paidStreamText()` wrapper in `/api/chat`
-  - Also see the other wrappers for AI SDK methods under /api
-2. **Custom Usage Signals** via the Paid.ai client in `/api/track-agent-usage`
-
-## Setup
+## Get started
 
 1. Install dependencies:
    ```bash
@@ -42,6 +34,14 @@ The demo implements two main Paid.ai features:
 4. Open [http://localhost:3847](http://localhost:3847) to chat with the agent
 
 5. Go to https://app.paid.ai/ to see the collected results
+
+## Implementation
+
+The demo implements two main Paid.ai features:
+
+1. **Automatic Cost Tracking** via `paidStreamText()` wrapper in `/api/chat`
+  - Also see the other wrappers for AI SDK methods under /api
+2. **Custom Usage Signals** via the Paid.ai client in `/api/track-agent-usage`
 
 ## Learn More
 
