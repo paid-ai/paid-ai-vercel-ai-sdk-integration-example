@@ -10,7 +10,7 @@ This example shows how to integrate Paid.ai's cost tracking and signal instrumen
 
 - **Cost Tracking**: Automatic LLM token cost calculation and tracking. See [/api/chat/route.ts](src/app/api/chat/route.ts)
 - **Usage Signals**: Custom event tracking for user interactions. See [/api/track-agent-usage/route.ts](src/app/api/track-agent-usage/route.ts)
-- **Multiple Providers**: Support for OpenAI and Google AI models. See [/api/utils/client.ts](src/app/api/utils/client.ts)
+- **Multiple Providers**: Support for OpenAI and Google AI models. See [/api/utils/client.ts](src/app/api/utils/models.ts)
 
 ## Get started
 
