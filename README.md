@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Paid.ai Simple Vercel AI SDK Integration Example
 
-## Getting Started
+A Next.js chat application demonstrating how to instrument AI SDK applications with [paid.ai](https://paid.ai) for cost tracking and usage monitoring.
 
-First, run the development server:
+Get started at [app.paid.ai](https://app.paid.ai/) for free.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## What's Included
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This demo shows how to integrate Paid.ai's cost tracking and signal instrumentation into a Vercel AI SDK chat application:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Cost Tracking**: Automatic LLM token cost calculation and tracking
+- **Usage Signals**: Custom event tracking for user interactions
+- **Multiple Providers**: Support for OpenAI and Google AI models
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Key Implementation
+
+The demo implements two main Paid.ai features:
+
+1. **Automatic Cost Tracking** via `paidStreamText()` wrapper in `/api/chat`
+  - Also see the other wrappers for AI SDK methods under /api
+2. **Custom Usage Signals** via the Paid.ai client in `/api/track-agent-usage`
+
+## Setup
+
+1. Install dependencies:
+   ```bash
+   yarn install
+   ```
+
+2. Set your environment variables:
+   ```bash
+   PAID_API_TOKEN=your_paid_api_token # visit https://app.paid.ai/ to get started for free
+   OPENAI_API_KEY=your_openai_key  # optional depending on the provider you wish to use
+   GOOGLE_GENERATIVE_AI_API_KEY=your_google_key  # optional depending on the provider you wish to use
+   ```
+
+3. Run the development server:
+   ```bash
+   yarn dev
+   ```
+
+4. Open [http://localhost:3847](http://localhost:3847) to chat with the agent
+
+5. Go to https://app.paid.ai/ to see the collected results
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [paid.ai](https://paid.ai) - Learn about how we help you monetize your agents
+- [app.paid.ai](https://app.paid.ai/) - Try our platform out for free
