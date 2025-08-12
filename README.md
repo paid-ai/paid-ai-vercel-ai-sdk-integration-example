@@ -8,9 +8,9 @@ Get started at [app.paid.ai](https://app.paid.ai/) for free.
 
 This example shows how to integrate Paid.ai's cost tracking and signal instrumentation into a Vercel AI SDK chat application:
 
-- **Cost Tracking**: Automatic LLM token cost calculation and tracking (./src/app/api/chat/route.ts)
-- **Usage Signals**: Custom event tracking for user interactions (./src/app/api/track-agent-usage/route.ts)
-- **Multiple Providers**: Support for OpenAI and Google AI models (./src/app/api/utils/client.ts)
+- **Cost Tracking**: Automatic LLM token cost calculation and tracking (src/app/api/chat/route.ts)
+- **Usage Signals**: Custom event tracking for user interactions (src/app/api/track-agent-usage/route.ts)
+- **Multiple Providers**: Support for OpenAI and Google AI models (src/app/api/utils/client.ts)
 
 ## Get started
 
