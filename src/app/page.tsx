@@ -1,42 +1,14 @@
 'use client';
 
 import { useChat } from '@ai-sdk/react';
-import { SignalData } from "@/app/types";
 import { useState } from 'react';
 import { DefaultChatTransport } from 'ai';
-
-async function recordUsageUsingEndpoint(usageData: SignalData) {
-  try {
-    const response = await fetch('/api/track-agent-usage', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(usageData),
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to record usage');
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error('Error recording usage:', error);
-  }
-}
 
 export default function Chat() {
   const { messages, sendMessage, status } = useChat({
     transport: new DefaultChatTransport({
       api: "/api/chat",
     }),
-    onFinish: async () => {
-      await recordUsageUsingEndpoint({
-        event_name: "using_chat_prompt",
-        external_agent_id: "ai-sdk-chatbot-id",
-        external_customer_id: "customer-with-external-id",
-      })
-    }
   });
   const [input, setInput] = useState('');
 
