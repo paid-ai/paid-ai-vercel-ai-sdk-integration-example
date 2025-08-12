@@ -23,9 +23,6 @@ export async function POST(req: Request) {
         model: getModel(provider as ModelProvider, modelName),
         prompt,
         schema,
-        onFinish: (result) => {
-          console.log('Stream object finished:', result.usage);
-        },
       });
 
       return result.toTextStreamResponse();

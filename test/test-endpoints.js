@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const API_BASE = `http://localhost:${process.env.PORT ? process.env.PORT : 3000}/api`;
+const API_BASE = `http://localhost:${process.env.PORT ? process.env.PORT : 3847}/api`;
 
 async function testEndpoint(endpoint, data, resultPrint) {
   console.log(`\n🧪 Testing ${endpoint}...`);
@@ -128,7 +128,7 @@ async function testMultipleProviders(endpoint, config, resultPrint = true, isStr
 
 async function runTests() {
   console.log('🚀 Starting AI SDK wrapper tests with multiple providers...');
-  console.log('Make sure your Next.js dev server is running on localhost:3000\n');
+  console.log('Make sure your Next.js dev server is running on localhost:3847\n');
 
   // Test generateText across providers
   await testMultipleProviders('/generate-text', testConfigs.generateText, true);

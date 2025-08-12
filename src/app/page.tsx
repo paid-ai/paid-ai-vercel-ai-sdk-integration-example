@@ -30,7 +30,7 @@ export default function Chat() {
     transport: new DefaultChatTransport({
       api: "/api/chat",
     }),
-    onFinish: async (_) => {
+    onFinish: async () => {
       await recordUsageUsingEndpoint({
         event_name: "using_chat_prompt",
         external_agent_id: "ai-sdk-chatbot-id",
