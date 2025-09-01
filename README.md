@@ -21,7 +21,7 @@ This example shows how to integrate Paid.ai's cost tracking and signal instrumen
 
 2. Set your environment variables:
    ```bash
-   PAID_API_TOKEN=your_paid_api_token # visit https://app.paid.ai/ to get started for free
+   PAID_API_KEY=your_paid_api_key # visit https://app.paid.ai/ to get started for free
    OPENAI_API_KEY=your_openai_key  # optional depending on the provider you wish to use
    GOOGLE_GENERATIVE_AI_API_KEY=your_google_key  # optional depending on the provider you wish to use
    ```

@@ -4,10 +4,10 @@ let client: PaidClient | null = null;
 let isInitialized: boolean = false;
 
 export async function getClient(): Promise<PaidClient> {
-  const apiToken = process.env.PAID_API_TOKEN ?? "";
+  const apiToken = process.env.PAID_API_KEY ?? "";
 
   if (!apiToken) {
-    throw new Error('api token missing: either set a PAID_API_TOKEN env variable or add a token to the code above');
+    throw new Error('api token missing: either set a PAID_API_KEY env variable or add a token to the code above');
   }
 
   if (!client) {
