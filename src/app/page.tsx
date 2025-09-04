@@ -4,6 +4,8 @@ import { useChat } from '@ai-sdk/react';
 import { SignalData } from "@/app/types";
 import { useState } from 'react';
 import { DefaultChatTransport } from 'ai';
+import { useAuth } from '@/app/contexts/AuthContext';
+import { useRouter } from "next/navigation";
 
 async function recordUsageUsingEndpoint(usageData: SignalData) {
   try {
@@ -39,9 +41,30 @@ export default function Chat() {
     }
   });
   const [input, setInput] = useState('');
+  const { logout, userData } = useAuth();
+  const router = useRouter();
 
   return (
     <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-xl font-semibold">Chat</h1>
+        <div className="flex items-center gap-4">
+          {userData && (
+            <span className="text-sm text-zinc-600 dark:text-zinc-400">
+              Welcome, {userData.name}
+            </span>
+          )}
+          <button
+            onClick={
+              () => { logout(); router.push("/") }
+            }
+            className="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+
       {messages.map(message => (
         <div key={message.id} className='whitespace-pre-wrap'>
           {message.role === 'user' ? 'User: ' : 'AI: '}

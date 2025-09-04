@@ -14,10 +14,13 @@
     "@ai-sdk/openai": "^2.0.1",
     "@ai-sdk/react": "^2.0.2",
     "@paid-ai/paid-node": "0.0.8-alpha4",
+    "@stripe/react-stripe-js": "^3.9.2",
+    "@stripe/stripe-js": "^7.9.0",
     "ai": "^5.0.2",
     "next": "15.4.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "stripe": "^18.5.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {
