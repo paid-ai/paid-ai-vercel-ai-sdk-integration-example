@@ -12,7 +12,7 @@ const STRIPE_PUBLISHABLE_KEY = 'pk_live_51S2vuU6VZ0JAwqpDJUwAOC5fbyQo4S2axB986wb
 
 export default function PaymentSetup() {
   const router = useRouter();
-  const { isLoggedIn, userData } = useAuth();
+  const { isLoggedIn, userData, isLoading } = useAuth();
   const provider = new StripeProvider();
 
   const handleSuccess = (result: PaymentResult) => {
@@ -30,10 +30,10 @@ export default function PaymentSetup() {
   };
 
   useEffect(() => {
-    if (!userData) {
+    if (!isLoading && !userData) {
       router.push('/sign-up');
     }
-  }, [userData]);
+  }, [isLoading, userData, router]);
 
   return (
     isLoggedIn && userData &&

@@ -1,4 +1,3 @@
-import { email } from "zod/v4";
 import { UserData } from "../types";
 
 export interface User {

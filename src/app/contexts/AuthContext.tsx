@@ -7,6 +7,7 @@ import { LoginFormData, UserData } from '../types';
 interface AuthContextType {
   isLoggedIn: boolean;
   userData: UserData | null;
+  isLoading: boolean;
   signup: (userData: UserData) => Promise<void>;
   login: (userData: LoginFormData) => Promise<boolean>;
   logout: () => void;
@@ -30,6 +31,7 @@ interface AuthProviderProps {
 export function AuthProvider({ children }: AuthProviderProps) {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const setLoginState = useCallback(() => {
     const user = userStore.getCurrentUser();
@@ -45,6 +47,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     setLoginState();
+    setIsLoading(false);
   }, []);
 
   const signup = async (userData: UserData) => {
@@ -79,7 +82,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, userData, signup, logout, login, deleteCurrentUser }}>
+    <AuthContext.Provider value={{ isLoggedIn, userData, isLoading, signup, logout, login, deleteCurrentUser }}>
       {children}
     </AuthContext.Provider>
   );
