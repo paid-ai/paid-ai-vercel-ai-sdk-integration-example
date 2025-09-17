@@ -3,8 +3,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/app/contexts/AuthContext';
-import { usePaidCustomer } from '@/app/(customer)/core/use-customer-creation';
-import { APPLICATION_AGENT_ID } from '@/app/constants';
 
 interface LoginFormData {
   name: string;
@@ -22,13 +20,6 @@ export default function Signup() {
   const router = useRouter();
   const { signup, isLoggedIn } = useAuth();
 
-  const { state: customerState, createCustomerAccount } = usePaidCustomer({
-    agentId: APPLICATION_AGENT_ID,
-    onSuccess: () => {
-      router.push('/payment-setup');
-    },
-  });
-
   useEffect(() => {
     if (isLoggedIn) {
       router.push('/');
@@ -43,21 +34,15 @@ export default function Signup() {
     }
 
     try {
-      const result = await createCustomerAccount({
-        email: formData.email,
-        name: formData.name,
-      });
-
-      if (!result) return;
-
       const userData = {
-        customerId: result.customerId,
+        customerId: "",
         name: formData.name,
         email: formData.email,
         password: formData.password
       };
 
       await signup(userData);
+      router.push('/');
     } catch (error) {
       console.error('Signup error:', error);
     }
@@ -113,18 +98,12 @@ export default function Signup() {
           />
         </div>
 
-        {customerState.error && (
-          <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-            {customerState.error}
-          </div>
-        )}
-
         <button
           type="submit"
-          disabled={customerState.isCreating || !formData.name.trim() || !formData.email.trim() || !formData.password.trim()}
+          disabled={!formData.name.trim() || !formData.email.trim() || !formData.password.trim()}
           className="w-full p-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {customerState.isCreating ? 'Signing up...' : 'Sign Up'}
+          Sign Up
         </button>
       </form>
     </div>
