@@ -1,6 +1,7 @@
 // paid-setup-handler.ts - Framework agnostic core handler
 
 import { getOrganizationId } from "./utils";
+import { paidConfig } from "../../paid.config";
 
 export interface SetupIntentRequestContext {
   body: SetupIntentRequest;
@@ -129,7 +130,7 @@ export async function createPaidSetupIntentHandler(
 
   const {
     paidApiUrl = process.env.PAID_API_URL || 'https://api.agentpaid.io',
-    paidApiKey = process.env.PAID_API_KEY,
+    paidApiKey = process.env.PAID_API_KEY || paidConfig.paidApiKey,
     returnUrl = process.env.PAID_RETURN_URL || 'https://paid.ai/blog'
   } = config;
 
@@ -192,7 +193,7 @@ export async function swapPaymentMethodHandler(
 
   const {
     paidApiUrl = process.env.PAID_API_URL || 'https://api.agentpaid.io',
-    paidApiKey = process.env.PAID_API_KEY,
+    paidApiKey = process.env.PAID_API_KEY || paidConfig.paidApiKey,
     returnUrl = process.env.PAID_RETURN_URL || 'https://paid.ai/blog',
   } = config;
 

@@ -1,9 +1,8 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { StripeProvider } from '@/app/(payments)/payment-providers/stripe';
-import { PaidPaymentSetupPage } from '@/app/(payments)/core/payment-setup-page';
-import { PaymentResult } from '@/app/(payments)/core/types';
+import { StripeProvider } from '../payment-providers/stripe';
+import { PaidPaymentSetupPage } from './payment-setup-page';
 
 interface PaymentMethodListItem {
   id: string;

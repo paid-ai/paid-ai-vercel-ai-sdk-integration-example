@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
-import { CustomerData, CreateCustomerResponse, CreateCustomerRequest } from '../core/create-customer-handler';
+import { CustomerData, CreateCustomerResponse, CreateCustomerRequest } from './create-customer-handler';
+import { paidConfig } from '../../paid.config';
 
 export interface UseCustomerCreationOptions {
   apiEndpoint?: string;
@@ -51,7 +52,7 @@ export async function createCustomer(
 }
 
 export function usePaidCustomer({
-  agentId,
+  agentId = paidConfig.agentId,
   orderConfig,
   onSuccess,
   onError,

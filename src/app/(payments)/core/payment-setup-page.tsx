@@ -3,6 +3,7 @@ import { PaymentResult } from './types';
 import { PaymentProvider } from './payment-provider';
 import { PaymentProviderContextProvider, usePaymentElements, usePaymentProvider } from './payment-context';
 import { usePaymentSetup } from './use-payment-setup';
+import { paidConfig } from '../../paid.config';
 
 type PaymentSetupConfig = {
   onSuccess?: (result: PaymentResult) => void;
@@ -143,7 +144,7 @@ export function PaymentSetupForm({
 export function PaidPaymentSetupPage({
   customerID,
   provider,
-  publishableKey,
+  publishableKey = paidConfig.publishableKey,
   apiEndpoint = "/api/paid-setup-intent",
   oldPaidPaymentMethodId,
   onSuccess,

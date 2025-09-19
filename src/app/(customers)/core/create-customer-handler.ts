@@ -1,4 +1,5 @@
 import { Paid, PaidClient } from "@paid-ai/paid-node";
+import { paidConfig } from "../../paid.config";
 
 interface CompleteCustomerData {
   email: string;
@@ -128,7 +129,7 @@ export async function createCustomerHandler(
     return response.error('Method not allowed', 405);
   }
 
-  const paidApiKey = process.env.PAID_API_KEY;
+  const paidApiKey = process.env.PAID_API_KEY || paidConfig.paidApiKey;
   const paidApiURL = process.env.PAID_API_URL || "https://api.agentpaid.io";
 
   if (!paidApiKey) {
