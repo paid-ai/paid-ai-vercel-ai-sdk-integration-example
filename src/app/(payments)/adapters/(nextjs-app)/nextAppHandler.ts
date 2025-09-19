@@ -1,13 +1,13 @@
 import { createPaidSetupIntentHandler, PaidSetupConfig, swapPaymentMethodHandler } from '../../core/setup-intent-route-handler';
 import {
   listPaymentMethodsHandler,
-  deletePaymentMethodHandler,
+  deletePaymentMethodHandler as coreDeletePaymentMethodHandler,
   getStripePaymentMethodHandler,
   CardManagementConfig
 } from '../../core/card-management-route-handler';
 
 
-export function createNextAppSetupIntentHandler(config?: PaidSetupConfig) {
+export function postSetupIntentHandler(config?: PaidSetupConfig) {
   return async function POST(request: Request) {
     const { NextResponse } = await import('next/server');
 
@@ -32,7 +32,7 @@ export function createNextAppSetupIntentHandler(config?: PaidSetupConfig) {
   };
 }
 
-export function createNextAppListPaymentMethodsHandler(config?: CardManagementConfig) {
+export function getPaymentMethodsHandler(config?: CardManagementConfig) {
   return async function GET(request: Request) {
     const { NextResponse } = await import('next/server');
 
@@ -57,7 +57,7 @@ export function createNextAppListPaymentMethodsHandler(config?: CardManagementCo
   };
 }
 
-export function createNextAppDeletePaymentMethodHandler(config?: CardManagementConfig) {
+export function deletePaymentMethodHandler(config?: CardManagementConfig) {
   return async function DELETE(request: Request) {
     const { NextResponse } = await import('next/server');
 
@@ -78,7 +78,7 @@ export function createNextAppDeletePaymentMethodHandler(config?: CardManagementC
     const headers: Record<string, string> = {};
     request.headers.forEach((value, key) => headers[key] = value);
 
-    return deletePaymentMethodHandler(
+    return coreDeletePaymentMethodHandler(
       { body: null, headers, method: 'DELETE' as const, params: { customerId, paidPaymentMethodId } },
       {
         json: (data, status = 200) => NextResponse.json(data, { status }),
@@ -89,7 +89,7 @@ export function createNextAppDeletePaymentMethodHandler(config?: CardManagementC
   };
 }
 
-export function createNextAppStripePaymentMethodHandler(config?: CardManagementConfig) {
+export function getPaymentMethodHandler(config?: CardManagementConfig) {
   return async function GET(request: Request) {
     const { NextResponse } = await import('next/server');
 
@@ -115,7 +115,7 @@ export function createNextAppStripePaymentMethodHandler(config?: CardManagementC
   };
 }
 
-export function createNextAppSwapPaymentMethodHandler(config?: CardManagementConfig) {
+export function putPaymentMethodHandler(config?: CardManagementConfig) {
   return async function POST(request: Request) {
     const { NextResponse } = await import('next/server');
 

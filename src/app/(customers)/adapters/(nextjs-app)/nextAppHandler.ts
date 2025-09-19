@@ -1,6 +1,6 @@
 import { createCustomerHandler } from '../../core/create-customer-handler';
 
-export function createNextCustomerHandler() {
+export function postCustomerHandler() {
   return async function POST(request: any) {
     const { NextResponse } = await import('next/server');
 
