@@ -1,10 +1,10 @@
-import { createPaidSetupIntentHandler, PaidSetupConfig } from "../core/setup-intent-route-handler";
+import { createPaidSetupIntentHandler, PaidSetupConfig } from "../../core/setup-intent-route-handler";
 import {
   listPaymentMethodsHandler,
   deletePaymentMethodHandler,
   getStripePaymentMethodHandler,
   CardManagementConfig
-} from '../core/card-management-route-handler';
+} from '../../core/card-management-route-handler';
 
 export function createNextPagesSetupIntentHandler(config?: PaidSetupConfig) {
   return async function handler(req: any, res: any) {

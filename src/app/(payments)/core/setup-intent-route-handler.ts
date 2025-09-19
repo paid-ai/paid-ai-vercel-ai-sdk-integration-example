@@ -122,7 +122,7 @@ export async function createPaidSetupIntentHandler(
   request: SetupIntentRequestContext,
   response: ResponseContext,
   config: PaidSetupConfig = {}
-): Promise<SetupIntentSuccessResponse | SetupIntentErrorResponse> {
+): Promise<Response> {
   if (request.method !== 'POST') {
     return response.error('Method not allowed', 405);
   }
@@ -185,7 +185,7 @@ export async function swapPaymentMethodHandler(
   request: SwapPaymentMethodRequestContext,
   response: ResponseContext,
   config: PaidSetupConfig = {}
-): Promise<SwapPaymentMethodResponse | SetupIntentErrorResponse> {
+): Promise<Response> {
   if (request.method !== 'POST') {
     return response.error('Method not allowed', 405);
   }

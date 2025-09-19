@@ -74,7 +74,7 @@ export async function listPaymentMethodsHandler(
   request: ListPaymentMethodsRequest,
   response: ResponseContext,
   config: CardManagementConfig = {}
-): Promise<PaymentMethodsResponse | { error: string; status: number }> {
+): Promise<Response> {
   if (request.method !== 'GET') {
     return response.error('Method not allowed', 405);
   }
@@ -114,7 +114,7 @@ export async function deletePaymentMethodHandler(
   request: PaymentMethodRequest,
   response: ResponseContext,
   config: CardManagementConfig = {}
-): Promise<DeletePaymentMethodResponse | { error: string; status: number }> {
+): Promise<Response> {
   if (request.method !== 'DELETE') {
     return response.error('Method not allowed', 405);
   }
@@ -175,7 +175,7 @@ export async function getStripePaymentMethodHandler(
   request: PaymentMethodRequest,
   response: ResponseContext,
   config: CardManagementConfig = {}
-): Promise<StripePaymentMethodResponse | { error: string; status: number }> {
+): Promise<Response> {
   if (request.method !== 'GET') {
     return response.error('Method not allowed', 405);
   }

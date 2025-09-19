@@ -1,10 +1,10 @@
-import { createPaidSetupIntentHandler, PaidSetupConfig, swapPaymentMethodHandler } from '../core/setup-intent-route-handler';
+import { createPaidSetupIntentHandler, PaidSetupConfig, swapPaymentMethodHandler } from '../../core/setup-intent-route-handler';
 import {
   listPaymentMethodsHandler,
   deletePaymentMethodHandler,
   getStripePaymentMethodHandler,
   CardManagementConfig
-} from '../core/card-management-route-handler';
+} from '../../core/card-management-route-handler';
 
 
 export function createNextAppSetupIntentHandler(config?: PaidSetupConfig) {

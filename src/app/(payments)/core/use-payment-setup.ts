@@ -96,15 +96,15 @@ export function usePaymentSetup(options: UsePaymentSetupOptions): UsePaymentSetu
       const si = paidResponse?.data?.setup_intent;
       let finalStatus = si?.status || 'succeeded';
 
-      // if (si?.status === 'requires_action') {
-      //   const { error: nextErr } = await provider.handleNextAction(stripe, {
-      //     clientSecret: si.client_secret,
-      //   });
-      //   if (nextErr) {
-      //     throw new Error(nextErr.message || 'Authentication failed');
-      //   }
-      //   finalStatus = 'succeeded';
-      // }
+      if (si?.status === 'requires_action') {
+        const { error: nextErr } = await provider.handleNextAction(stripe, {
+          clientSecret: si.client_secret,
+        });
+        if (nextErr) {
+          throw new Error(nextErr.message || 'Authentication failed');
+        }
+        finalStatus = 'succeeded';
+      }
 
       const result: PaymentResult = {
         confirmationToken: confirmationToken.id,

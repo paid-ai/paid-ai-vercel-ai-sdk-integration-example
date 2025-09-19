@@ -1,4 +1,4 @@
-import { createCustomerHandler } from "../core/create-customer-handler";
+import { createCustomerHandler } from "../../core/create-customer-handler";
 
 export function createNextPagesCustomerHandler() {
   return async function handler(req: any, res: any) {

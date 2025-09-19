@@ -1,4 +1,4 @@
-import { createNextCustomerHandler } from '@paid-ai/monetization-integration-core';
+import { createCustomerHandler } from '../../core/create-customer-handler';
 
 export function createNextCustomerHandler() {
   return async function POST(request: any) {
