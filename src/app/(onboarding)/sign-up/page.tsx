@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/app/contexts/AuthContext';
-import { usePaidCustomer } from '@/app/(customer)/core/use-customer-creation';
 import { APPLICATION_AGENT_ID } from '@/app/constants';
+import { usePaidCustomer } from '@/app/(customers)/core/use-customer-creation';
 
 interface LoginFormData {
   name: string;
